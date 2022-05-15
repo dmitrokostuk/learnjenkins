@@ -1,0 +1,10 @@
+# ignore all logs
+*.log
+
+# ignore all keys
+*.key
+*.pub
+
+/centos/remote-key
+
+/jenkins_home
