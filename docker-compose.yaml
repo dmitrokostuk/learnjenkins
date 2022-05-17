@@ -19,7 +19,14 @@ services:
           dockerfile: Dockerfile 
         networks:
            - net   
-    #db_host:
-     #   container_name: db_hos
+    db_host:
+        container_name: db_host
+        image: mysql:5.7
+        environment:
+            - "MYSQL_ROOT_PASSWORD=1234"
+        volumes:
+            - "$PWD/jenkins_home/db_data:/var/lib/mysql/"
+        networks:
+            - net    
 networks:
     net:
