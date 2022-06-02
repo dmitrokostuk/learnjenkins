@@ -43,7 +43,7 @@ RUN set -xe \
 
 RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
     
-    #python3.7 get-pip.py --user && \
+    python3.7 get-pip.py --user && \
     pip3 -V && \
     alias pip3='/root/.local/bin/pip3'&& \
     pip3 install awscli --upgrade --user
