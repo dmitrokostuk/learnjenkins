@@ -4,7 +4,8 @@
 # ignore all keys
 *.key
 *.pub
-
+/centos/remote-key2
+/centos/remote2-ki
 /centos/remote-key
-
+/centos/remote-ki
 /jenkins_home

@@ -9,16 +9,20 @@ RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|
 RUN yum -y install openssh-server openssh-clients
 
 RUN useradd remote_user && \
-    echo "remote_user:1234" | chpasswd\
-    mkdir /home/remote_user/.ssh \
+    echo "remote_user:1234" | chpasswd && \
+    mkdir /home/remote_user/.ssh && \
     chmod 700 /home/remote_user/.ssh
 
 COPY remote-key.pub /home/remote_user/.ssh/authorized_keys
+
+COPY remote-key2.pub /home/remote_user/.ssh/authorized_keys
 
 RUN chown remote_user:remote_user -R /home/remote_user/.ssh && \
     chmod 600 /home/remote_user/.ssh/authorized_keys
 
 RUN ssh-keygen -A
+
+CMD /usr/sbin/sshd -D
 
 RUN yum -y install mysql
 
@@ -51,11 +55,6 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
 
 
 
-CMD /usr/sbin/sshd -D
+
 
 EXPOSE 22
-
-
-
-    
-
